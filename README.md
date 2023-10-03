@@ -8,9 +8,9 @@ plink --bfile <bfile_name> --recode A <output_file_name>`
 ```
 
 and has the following format:
-
+```bash
 FID  IID  PAT  MAT  SEX  PHENOTYPE snp001  snp002 ...  snpXXX
-
+```
 Where each snp value of every sample is a 0, 1 or 2, for zero,
 one or two minor variant alleles.
 
