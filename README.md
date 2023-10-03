@@ -1,12 +1,11 @@
 This directory contains the python scripts that are used to handle and compress the recoded data.
 
-recodeA.py:
------------
------------
+## recodeA.py:
 
 A module for importing, summarizing, imputing and transforming .raw file with recoded data. A recoded data file is obtained with
-
-`plink --bfile <bfile_name> --recode A <output_file_name>`
+```bash
+plink --bfile <bfile_name> --recode A <output_file_name>`
+```
 
 and has the following format:
 
@@ -17,29 +16,20 @@ one or two minor variant alleles.
 
 .raw data is imported with `recodeA.read_raw(<raw_file>)` and returns a RecodedData object (inherits from pandas.DataFrame). The RecodedData class methods are documented in the file itself. For use in a autoencoder, the data must be transformed into a 2D numpy array. This is done with the `recodeA.RecodedData.get_variants()` method. The sample information can be extracted using `recodeA.RecodedData.get_info()` and returns a RecodedInfo object. The sample information can be joined with a numpy array containing variants data (must have the same number of samples).
 
-
-Examples:
+### Examples:
 ---------
 
 extracting the variants from a .raw file
-
-`import recodeA`
-
-`data = recodeA.read_raw("path_to_raw_file")`
-
-`data_imputed = raw.impute(mode="zero")`
-
-`variants = data_imputed.get_variants()`
-
-`print(type(data), type(variants))`
-
+```python
+import recodeA
+data = recodeA.read_raw("path_to_raw_file")
+data_imputed = raw.impute(mode="zero")
+variants = data_imputed.get_variants()
+print(type(data), type(variants))
 <class 'RecodedData'>, <class 'numpy.ndarray'>
+```
 
-
-
-autoencoder.py:
----------------
----------------
+## autoencoder.py:
 
 A module for creating and wrapping autoencoder models using the tensorflow API.
 
@@ -54,39 +44,32 @@ To use a tensorflow model in a gridsearch API such as sklearn.model_selection.Gr
 After a tensorflow.keras.Sequential autoencoder model is sufficiently trained, the encoder can be extracted to predict the bottleneck values. The function `extract_encoder()` return the encoder part of an autoencoder as a tensorflow.keras.sequential model. With the `.predict()` function, the bottleneck values are calculated.
 
 
-Examples:
+### Examples:
 ---------
 
 predicting autoencoder bottleneck values
 
-`import autoencoder as ae`
-
-`import recodeA`
-
-`data = recodeA.read_raw("path_to_raw_file").impute().get_variants()` # using .raw data
-
-`model = ae.create_model(inputs=data.shape[1], shape="sqrt:, hl=3, bn=3)`
-
-`history = model.fit(data, data)`
-
-`encoder = ae.extract_encoder(model)`
-
-`encoder.predict(data)`
-
+```python
+import autoencoder as ae
+import recodeA
+data = recodeA.read_raw("path_to_raw_file").impute().get_variants() # using .raw data
+model = ae.create_model(inputs=data.shape[1], shape="sqrt:, hl=3, bn=3)
+history = model.fit(data, data)
+encoder = ae.extract_encoder(model)
+encoder.predict(data)
 array([[ 3.0684285 ,  1.2678118 ,  0.5405439 ],
        [ 2.7718604 , 23.414883  ,  4.911639  ],
        ...,
        [11.091528  , 14.339089  ,  5.6872787 ],
        [ 0.6532019 ,  4.692735  ,  4.095155  ]], dtype=float32)
+```
 
 using an autoencoder model in a GridSearchCV
 
-`import autoencoder as ae`
-
-`import recodeA`
-
-`from sklearn.model_selection import GridSearchCV`
-
-`data = recodeA.read_raw("path_to_raw_file").impute().get_variants()` # using .raw data
-
-`model = ae.create_model(inputs=data.shape[1], shape="sqrt:, hl=3, bn=3)`
+```python
+import autoencoder as ae
+import recodeA
+from sklearn.model_selection import GridSearchCV
+data = recodeA.read_raw("path_to_raw_file").impute().get_variants() # using .raw data
+model = ae.create_model(inputs=data.shape[1], shape="sqrt:, hl=3, bn=3)
+```
