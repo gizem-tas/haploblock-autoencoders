@@ -1,6 +1,8 @@
 """autoencoder - a module for creating and wrapping autoencoder 
 models using the tensorflow API.
 =============================================================
+# Created By  : T. Westerdijk
+=============================================================
 Autoencoders are neural networks which attempt to reconstruct
 the input layer as their output layer while constraining the 
 flow of information through the use of a bottleneck.
