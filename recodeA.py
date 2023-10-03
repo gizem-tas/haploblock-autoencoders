@@ -1,4 +1,6 @@
 """recodeA - a module to handle plink --recode A .raw file data
+=============================================================
+# Created By  : T. Westerdijk
 ===========================================================
 This module contains methods to import, summarise, impute
 and transform .raw files with recoded data. This type of file
