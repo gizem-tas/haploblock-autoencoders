@@ -73,3 +73,6 @@ from sklearn.model_selection import GridSearchCV
 data = recodeA.read_raw("path_to_raw_file").impute().get_variants() # using .raw data
 model = ae.create_model(inputs=data.shape[1], shape="sqrt:, hl=3, bn=3)
 ```
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
