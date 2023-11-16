@@ -1,10 +1,19 @@
 This directory contains the python scripts that are used to handle and compress the recoded data.
 
+## Data preparation:
+
+Estimating the haplotype blocks from PLINK binary files:
+```bash
+for chr_no in {1..22};
+ do plink --bfile <bfile_name> --blocks --blocks-max-kb 10000 --blocks-min-maf 0.01 --blocks-recomb-highci 0.7 --blocks-strong-highci 0.85 --blocks-strong-lowci 0.5001 --chr ${chr_no} --out <output_file_name> ;
+done
+```
+
 ## recodeA.py:
 
 A module for importing, summarizing, imputing and transforming .raw file with recoded data. A recoded data file is obtained with
 ```bash
-plink --bfile <bfile_name> --recode A <output_file_name>`
+plink --bfile <bfile_name> --recodeA <output_file_name>`
 ```
 
 and has the following format:
