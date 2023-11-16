@@ -13,7 +13,7 @@ done
 
 A module for importing, summarizing, imputing and transforming .raw file with recoded data. A recoded data file is obtained with
 ```bash
-plink --bfile <bfile_name> --recodeA <output_file_name>`
+plink --bfile <bfile_name> --recodeA <output_file_name>
 ```
 
 and has the following format:
