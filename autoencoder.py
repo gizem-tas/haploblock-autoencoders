@@ -23,7 +23,7 @@ import numpy as np
 from tensorflow import int64
 from tensorflow.keras import Sequential
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Activation, Dense, LeakyReLU
+from tensorflow.keras.layers import Activation, Dense, LeakyReLU, Input
 from tensorflow.keras.regularizers import L1
 
 from tensorflow.keras import backend as K
@@ -266,7 +266,7 @@ def create_model(inputs, shape="sqrt", hl=4, bn=3, activation=LeakyReLU(), **kwa
     
     Arguments:
         inputs: number of input nodes (int)
-        shape: name of the ae shape (str: `sqrt`|`quadr`|`lin`|`block`), default `sqrt`
+        shape: name of the ae shape (str: `sqrt`(elliptic)|`quadr`|`lin`|`block`(rectangular)), default `sqrt`
         hl: number of hidden layers (int), default 3
         bn: number of bottleneck nodes (int), default 3
         activation: activation function of hidden layers, default LeakyReLU
@@ -277,7 +277,7 @@ def create_model(inputs, shape="sqrt", hl=4, bn=3, activation=LeakyReLU(), **kwa
     K.clear_session()
     
     ae = Sequential(name="ae")
-    ae.add(Dense(inputs, activation=activation, input_shape=(inputs,), name="inputs"))
+    ae.add(Input(shape=(inputs,), name="inputs"))
     
     encoder, decoder = model_shape(inputs=inputs, shape=shape, hl=hl, bn=bn)
     
@@ -297,7 +297,7 @@ def create_sparse_model(inputs, shape="sqrt", hl=3, bn=3, activation=LeakyReLU()
     
     Arguments:
         inputs: number of input nodes (int)
-        shape: name of the ae shape (str: `sqrt`|`quadr`|`lin`|`block`), default `sqrt`
+        shape: name of the ae shape (str: `sqrt`(elliptic)|`quadr`|`lin`|`block`(rectangular)), default `sqrt` 
         hl: number of hidden layers (int), default 3
         bn: number of bottleneck nodes (int), default 3
         activation: activation function of hidden layers, default LeakyReLU
@@ -308,7 +308,7 @@ def create_sparse_model(inputs, shape="sqrt", hl=3, bn=3, activation=LeakyReLU()
     K.clear_session()
     
     ae = Sequential(name="ae")
-    ae.add(Dense(inputs, activation=activation, input_shape=(inputs,), name="inputs"))
+    ae.add(Input(shape=(inputs,), name="inputs"))
     
     encoder, decoder = model_shape(inputs=inputs, shape=shape, hl=hl, bn=bn)
     
