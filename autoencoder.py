@@ -239,7 +239,7 @@ def model_shape(inputs, shape="sqrt", hl=3, bn=3):
     
     Arguments:
         inputs: number of input nodes (int)
-        shape: name of the ae shape (str: `sqrt`|`quadr`|`lin`|`block`), default `sqrt`
+        shape: name of the ae shape (str: `sqrt`(elliptic)|`quadr`|`lin`|`block`(rectangular)), default `sqrt`
         hl: number of hidden layers (int), default 3
         bn: number of bottleneck nodes (int), default 3
         
