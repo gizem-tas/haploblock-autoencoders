@@ -292,7 +292,7 @@ def create_model(inputs, shape="sqrt", hl=4, bn=3, activation=LeakyReLU(), **kwa
     
     return ae
     
-def create_sparse_model(inputs, shape="sqrt", hl=3, bn=3, activation=LeakyReLU(), **kwargs):
+def create_sparse_model(inputs, shape="sqrt", hl=4, bn=3, activation=LeakyReLU(), **kwargs):
     """Function for creating and compiling a keras Sequential autoencoder model.
     
     Arguments:
