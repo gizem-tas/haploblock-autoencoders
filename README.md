@@ -44,7 +44,7 @@ A module for creating and wrapping autoencoder models using the tensorflow API.
 
 The module contains functions to create a tensorflow.keras.Sequential autoencoder moedel, as well as a wrapper API class to use the autoencoder model with other libraries and API's, like the sklearn.model_selection.GridSearchCV API.
 
-The main function of the module is `autoencoder.create_model()`. This function creates a tensorflow.keras.Sequential autoencoder model that can be trained with 2D data. The shape of the data should by (n_samples, n_inputs). The input data should be the same as the output data, since autoencoders are trained to attempt a reconstruction of this data.
+The main function of the module is `autoencoder.create_model()`. This function creates a tensorflow.keras.Sequential autoencoder model that can be trained with tabular data. The dimensions of the dataset should be (n_samples, n_inputs). The input data should be the same as the output data, since autoencoders are trained to attempt a reconstruction of this data.
 
 The shape of the autoencoder, hidden layer number and bottleneck size are parameters of the function. The model is optimized with the Adam optimizer, the loss is MSE and used a custom metric called "snp_accuracy". The activation funciton of the hidden layers is LeakyReLU, the acivation of the output layers is a custom function called "additive", which has an output range from 0 to 2.
 
